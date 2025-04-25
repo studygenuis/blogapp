@@ -1,9 +1,10 @@
 "use client"
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useState } from 'react'
 import { signIn } from "next-auth/react"
 
 const page = () => {
+    const [error, setError] = useState('')
     const router = useRouter()
 
     const handleSubmit = async (event) => {
@@ -20,8 +21,7 @@ const page = () => {
         })
 
         if (result.error) {
-            alert(result.error)
-            console.log(result.error)
+            setError("Invalid credentials")
         } else {
             window.location.href = '/'
         }
@@ -29,7 +29,12 @@ const page = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} className='flex flex-col gap-5'>
+            {error &&
+                <div className='bg-red-200 text-red-400  p-3 font-bold border-2 border-red-400'>
+                    {error}
+                </div>
+            }
+            <form onSubmit={handleSubmit} className='flex mt-4 flex-col gap-5'>
                 <div className='flex flex-col gap-4'>
                     <div className='flex flex-col gap-3'>
                         <label htmlFor="email">Email:</label>
