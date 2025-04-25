@@ -23,7 +23,7 @@ const page = () => {
         if (result.error) {
             setError("Invalid credentials")
         } else {
-            window.location.href = '/'
+            router.push('/')
         }
     }
 

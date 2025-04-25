@@ -1,4 +1,3 @@
-import withAuth from '../../utils/withAuth'
 import React from 'react'
 
 const page = () => {
@@ -15,4 +14,4 @@ const page = () => {
   )
 }
 
-export default withAuth(page)
+export default page
